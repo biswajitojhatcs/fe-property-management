@@ -6,7 +6,7 @@ const AuthRoutes = () => {
       {sessionStorage.getItem("isLoggedIn") === "true" ? (
         <Outlet />
       ) : (
-        <Navigate to={"/"} />
+        <Navigate to={"/login"} />
       )}
     </>
   );
