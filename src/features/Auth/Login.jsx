@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginStart, loginSuccess, loginFailure } from "./authSlice";
 import "../../App.css";
 
 
@@ -8,7 +10,7 @@ function validate({ username, password }) {
     const errors = {};
 
     if (!username.trim()) {
-        errors.email = "Enter your email address";
+        errors.username = "Enter your email address";
     }
 
     if (!password) {
@@ -20,18 +22,20 @@ function validate({ username, password }) {
 }
 
 // Replace with a real request to your auth endpoint.
-function signIn({ email, password }) {
+function signIn({ username, password }) {
     return new Promise((resolve) => setTimeout(resolve, 1000));
 }
 
 
 export default function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { loading } = useSelector((state) => state.auth);
+
     const [values, setValues] = useState({ username: "", password: "", remember: false });
     const [errors, setErrors] = useState({});
-    const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState(null);
 
-    const navigate = useNavigate();
 
     // Hide the toast automatically after 3 seconds
     useEffect(() => {
@@ -56,18 +60,19 @@ export default function Login() {
             return;
         }
 
-        setLoading(true);
+        dispatch(loginStart());
         try {
             await signIn(values);
+            dispatch(loginSuccess({ username: values.username }));
+
             setToast({ type: "success", text: "Signed in successfully." });
-            sessionStorage.setItem("isLoggedIn",true);
+
             setTimeout(() => {
                 navigate("/user");
             }, 3000);
         } catch {
+            dispatch(loginFailure("Sign in failed. Please try again."));
             setToast({ type: "failure", text: "Sign in failed. Please try again." });
-        } finally {
-            setLoading(false);
         }
     };
 
