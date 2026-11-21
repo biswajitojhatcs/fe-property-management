@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Counter } from "./features/counter/Counter";
 import AuthRoutes from "./routes/AuthRoutes";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import EndUser from "./pages/EndUser";
-import EntryPage from "./pages/EntryPage";
+import Login from "./features/Auth/Login";
+import SignUp from "./features/Auth/SignUp";
+import EndUser from "./features/User/EndUser";
+import EntryPage from "./features/Entrypage/EntryPage";
 
 function App() {
 	return (

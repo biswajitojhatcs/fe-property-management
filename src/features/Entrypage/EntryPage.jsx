@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/EntryPage.css";
+import "./EntryPage.css";
 
 export default function EntryPage() {
     const navigate = useNavigate();

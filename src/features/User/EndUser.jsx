@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
-import "../styles/EndUser.css";
-import { STATE_CITY_DATA, INITIAL_PROPERTIES } from "../data/propertyData";
+import "./EndUser.css";
+import { STATE_CITY_DATA, INITIAL_PROPERTIES } from "../../data/propertyData";
+
 
 export default function EndUser() {
     // Filter states
@@ -9,15 +10,6 @@ export default function EndUser() {
     const [selectedCity, setSelectedCity] = useState("Bhubaneswar");
     const [propertyType, setPropertyType] = useState("All");
     const [bedsFilter, setBedsFilter] = useState("Any");
-    const [favorites, setFavorites] = useState({});
-
-    // Toggle favorite state
-    const toggleFavorite = (id) => {
-        setFavorites((prev) => ({
-            ...prev,
-            [id]: !prev[id],
-        }));
-    };
 
     // Available cities based on selected state
     const availableCities = useMemo(() => {
@@ -208,29 +200,6 @@ export default function EndUser() {
                                 {/* Image Container with Badges & Save Action */}
                                 <div className="card-image-container">
                                     <img src={prop.image} alt={prop.title} className="card-img" />
-                                    {prop.featured && (
-                                        <span className="badge-featured">Featured</span>
-                                    )}
-
-                                    <button
-                                        type="button"
-                                        className={`btn-favorite ${favorites[prop.id] ? "active" : ""}`}
-                                        onClick={() => toggleFavorite(prop.id)}
-                                        aria-label="Save to favorites"
-                                    >
-                                        <svg
-                                            width="18"
-                                            height="18"
-                                            viewBox="0 0 24 24"
-                                            fill={favorites[prop.id] ? "currentColor" : "none"}
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                                        </svg>
-                                    </button>
                                 </div>
 
                                 {/* Property Details */}
