@@ -1,110 +1,6 @@
 import React, { useState, useMemo } from "react";
 import "../styles/EndUser.css";
-
-// State and City mapping
-const STATE_CITY_DATA = {
-    Odisha: ["Bhubaneswar", "Cuttack", "Puri", "Rourkela", "Sambalpur"],
-    Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Thane"],
-    Karnataka: ["Bengaluru", "Mysuru", "Mangaluru", "Hubli"],
-    Delhi: ["New Delhi", "North Delhi", "South Delhi", "Dwarka"],
-    Telangana: ["Hyderabad", "Warangal", "Secunderabad"],
-    "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"],
-};
-
-// Initial properties based on the design mockup
-const INITIAL_PROPERTIES = [
-    {
-        id: 1,
-        title: "Spacious Modern Apartment",
-        location: "Bhubaneswar, Odisha",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "Apartment",
-        priceUsd: "₹20,000/mo",
-        priceInr: "₹25,000/mo",
-        beds: 3,
-        baths: 2,
-        sqft: "1,500",
-        featured: true,
-        image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-        id: 2,
-        title: "Elegant Luxury Villa",
-        location: "Jayadev Vihar, Bhubaneswar",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "Villa",
-        priceUsd: "₹25,000/mo",
-        priceInr: "₹30,000/mo",
-        beds: 2,
-        baths: 2,
-        sqft: "1,500",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-        id: 3,
-        title: "Charming Urban Apartment",
-        location: "Saheed Nagar, Bhubaneswar",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "Apartment",
-        priceUsd: "₹25,000/mo",
-        priceInr: "₹30,000/mo",
-        beds: 2,
-        baths: 2,
-        sqft: "1250",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-        id: 4,
-        title: "Cosy Family Home",
-        location: "Patia, Bhubaneswar",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "House",
-        priceUsd: "₹15,000/mo",
-        priceInr: "₹20,000/mo",
-        beds: 2,
-        baths: 2,
-        sqft: "1,200",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-        id: 5,
-        title: "Modern Minimalist Villa",
-        location: "Khandagiri, Bhubaneswar",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "Villa",
-        priceUsd: "₹18,000/mo",
-        priceInr: "₹25,000/mo",
-        beds: 3,
-        baths: 3,
-        sqft: "2,100",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-    },
-    {
-        id: 6,
-        title: "Contemporary High-Rise",
-        location: "Chandrasekharpur, Bhubaneswar",
-        state: "Odisha",
-        city: "Bhubaneswar",
-        type: "Apartment",
-        priceUsd: "₹18,000/mo",
-        priceInr: "₹20,000/mo",
-        beds: 2,
-        baths: 2,
-        sqft: "1,550",
-        featured: false,
-        image: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&q=80",
-    },
-];
-
+import { STATE_CITY_DATA, INITIAL_PROPERTIES } from "../data/propertyData";
 
 export default function EndUser() {
     // Filter states
@@ -315,7 +211,6 @@ export default function EndUser() {
                                     {prop.featured && (
                                         <span className="badge-featured">Featured</span>
                                     )}
-                                    <span className="badge-price-mo">{prop.priceUsd}</span>
 
                                     <button
                                         type="button"
