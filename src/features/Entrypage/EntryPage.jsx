@@ -4,7 +4,7 @@ import "./EntryPage.css";
 export default function EntryPage() {
     const navigate = useNavigate();
     const navigateToSearchProperty = () => {
-        navigate("/login");
+        navigate(`/login?role=${role}`);
     };
     
     return (
@@ -31,7 +31,7 @@ export default function EntryPage() {
                         <div className="des-card">
                             <p>Streamline your property search with personalized recommendations and easy-to-use tools. Find exactly what you need, faster.</p>
                         </div>
-                        <button className="search-property-btn" onClick={navigateToSearchProperty}>
+                        <button className="search-property-btn" onClick= {() => navigateToSearchProperty("tenant")}>
                             Search Properties
                         </button>
                     </div>
@@ -51,7 +51,7 @@ export default function EntryPage() {
                         <div className="des-card">
                             <p>Reach a wide audience of potential tenants instantly. List your property with ease and manage inquiries effortlessly.</p>
                         </div>
-                        <button className="search-property-btn" onClick={navigateToSearchProperty}>
+                        <button className="search-property-btn" onClick={() => navigateToSearchProperty("owner")}>
                             List Your Property
                         </button>
                     </div>

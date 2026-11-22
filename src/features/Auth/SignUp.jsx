@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import "../../App.css";
 
 
@@ -54,6 +54,8 @@ export default function SignUp() {
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null);
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const role = searchParams.get("role") || "tenant";
 
     const handleChange = (field) => (e) => {
         const value = field === "terms" ? e.target.checked : e.target.value;
@@ -182,7 +184,7 @@ export default function SignUp() {
                 </p>
 
                 <p className="signup-footer">
-                    Already have an account? <Link className="signup-link" to="/login">Sign In</Link>
+                    Already have an account? <Link className="signup-link" to={`/login?role=${role}`}>Sign In</Link>
                 </p>
             </form>
         </div>

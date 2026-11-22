@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginStart, loginSuccess, loginFailure } from "./authSlice";
 import "../../App.css";
@@ -32,10 +32,11 @@ export default function Login() {
     const navigate = useNavigate();
     const { loading } = useSelector((state) => state.auth);
 
+    const [searchParams] = useSearchParams();
     const [values, setValues] = useState({ username: "", password: "", remember: false });
     const [errors, setErrors] = useState({});
     const [toast, setToast] = useState(null);
-
+    const role = searchParams.get("role") || "tenant";
 
     // Hide the toast automatically after 3 seconds
     useEffect(() => {
@@ -125,7 +126,7 @@ export default function Login() {
                 </button>
 
                 <p className="login-footer">
-                    Don't have an account? <Link className="login-link" to="/signup">Register Here</Link>
+                    Don't have an account? <Link className="login-link" to={`/signup?role=${role}`}>Register Here</Link>
                 </p>
             </form>
             {toast && (
